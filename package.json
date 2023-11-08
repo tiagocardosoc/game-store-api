@@ -1,0 +1,27 @@
+{
+  "name": "game-store-api",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "repository": "https://github.com/tiagocardosoc/game-store-api.git",
+  "author": "tcardosoc <tcardosoc.dev@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn start",
+    "start:dev": "nodemon --exec ts-node src/server.ts",
+    "build": "npx tsc"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.16",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.9.0",
+    "aws-sdk": "^2.1490.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "jsonwebtoken": "^9.0.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typeorm": "^0.3.17",
+    "typescript": "^5.2.2"
+  }
+}
