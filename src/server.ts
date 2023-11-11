@@ -2,9 +2,13 @@ import express from "express"
 import { routes } from './infra/routes/routes';
 import cors from 'cors';
 import { AppDataSource } from './data-source';
+import { config } from "dotenv";
+import AmazonSimpleEmailService from "./infra/services/aws-mail.service";
 
 AppDataSource.initialize().then(() => {
     const app = express()
+
+    config();
 
     app.listen(3030, () => {
         console.log('Server is running...')
@@ -23,5 +27,8 @@ AppDataSource.initialize().then(() => {
             credentials: true
         })
     );
+
+    // setup all email templates
+    AmazonSimpleEmailService.createOrUpdateTemplates();
 
 })
