@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import UserService from "../services/auth.service";
 
 class AuthController {
-    async signUp(req: Request, res: Response) {
+    async signUp(req: Request, res: Response): Promise<void> {
         try {
 
             const userData = req.body;
