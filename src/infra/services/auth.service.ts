@@ -9,7 +9,7 @@ class UserService {
     async signUp(userData: UserModel): Promise<void> {
 
         if (this.userRepository.findOne(userData)) {
-            throw new error('User already exists')
+            throw new Error('User already exists')
         }
 
         const hashedPassword = await hashPassword(userData.password);
