@@ -1,6 +1,5 @@
-import { error } from "console";
 import { UserRepository } from "../repository/user.repository";
-import { hashPassword, verifyPassword } from "./security.service";
+import Cryptography from "./security.service";
 import { UserModel } from "src/core/models/user.model";
 
 class UserService {
@@ -12,7 +11,7 @@ class UserService {
             throw new Error('User already exists')
         }
 
-        const hashedPassword = await hashPassword(userData.password);
+        const hashedPassword = await Cryptography.hashPassword(userData.password);
         const [salt, hash] = hashedPassword.split('.');
         userData.password = hash
 
