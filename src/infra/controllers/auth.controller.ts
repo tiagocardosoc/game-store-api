@@ -1,18 +1,17 @@
 import { Request, Response } from "express";
 import UserService from "../services/auth.service";
+import { BaseController } from "./base.controller";
 
-class AuthController {
+class AuthController extends BaseController {
     async signUp(req: Request, res: Response): Promise<void> {
         try {
-
             const userData = req.body;
 
-            const newUser = await UserService.signUp(userData);
+            await UserService.signUp(userData);
 
-            res.status(201).json();
-
+            this.ok(res)
         } catch (error) {
-            res.status(500).json({ error: 'Failed to create user' })
+            this.generalError(res, 'It was not possible register you, try again later.')
         }
     }
 }
