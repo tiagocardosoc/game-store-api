@@ -1,11 +1,15 @@
 import { UserRepository } from "../repository/user.repository";
 import Cryptography from "./security.service";
-import { UserModel } from "src/core/models/user.model";
+import { ISignUpData } from "src/core/interfaces/user.interfaces";
 
 class UserService {
     private userRepository: UserRepository;
 
-    async signUp(userData: UserModel): Promise<void> {
+    constructor() {
+        this.userRepository = new UserRepository()
+    }
+
+    async signUp(userData: ISignUpData): Promise<void> {
 
         if (this.userRepository.findOne(userData)) {
             throw new Error('User already exists')
@@ -16,7 +20,7 @@ class UserService {
         userData.password = hash
 
         const newUser = await this.userRepository.create(userData);
-            
+
         return
     }
 }

@@ -1,14 +1,15 @@
 {
   "name": "game-store-api",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "server.ts",
   "repository": "https://github.com/tiagocardosoc/game-store-api.git",
   "author": "tcardosoc <tcardosoc.dev@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "yarn start",
     "start:dev": "nodemon --exec ts-node src/server.ts",
-    "build": "npx tsc"
+    "build": "npx tsc",
+    "typeorm": "typeorm-ts-node-commonjs"
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -17,6 +18,7 @@
     "@types/node": "^20.9.0",
     "aws-sdk": "^2.1490.0",
     "bcrypt": "^5.1.1",
+    "class-validator": "^0.14.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",

@@ -2,27 +2,39 @@ import { Response } from "express";
 
 interface IBaseControllerPayload {
     message: string,
+    error?: any,
     data?: any,
 }
 
-export abstract class BaseController {
+export class BaseController {
+
     ok(res: Response, payload?: IBaseControllerPayload): void {
-        res.status(200).json(payload)
+        this.buildResponse(res, 200, payload)
     }
 
-    notFound(res: Response, errorMessage: string): void {
-        res.status(404).json({ error: errorMessage })
+    notFound(res: Response, payload?: IBaseControllerPayload): void {
+        this.buildResponse(res, 404, {
+            error: 'Required data is not found.'
+        })
+    }
+
+    validationError(res: Response, payload?: IBaseControllerPayload): void {
+        this.buildResponse(res, 400, {
+            error: payload.error
+        })
     }
 
     unauthorized(res: Response): void {
-        res.status(404).json({
-            error: 'User is not authorized to access this endpoint.'
+        this.buildResponse(res, 200, {
+            error: 'User is unauthorized.'
         })
     }
 
-    generalError(res: Response, errorMessage: string): void {
-        res.status(500).json({
-            error: errorMessage
-        })
+    generalError(res: Response, error: string): void {
+        this.buildResponse(res, 500, { error })
+    }
+
+    private buildResponse(httpResponse: Response, statusCode: number, body?: any): Response {
+        return httpResponse.status(statusCode).json(body);
     }
 }

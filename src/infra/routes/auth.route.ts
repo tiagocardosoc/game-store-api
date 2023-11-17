@@ -5,7 +5,7 @@ const route = Router();
 
 route.post(
     '/auth/sign-up',
-    AuthController.signUp
+    AuthController.signUp.bind(AuthController)
 )
 
 export default route;
