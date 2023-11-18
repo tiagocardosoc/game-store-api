@@ -30,7 +30,7 @@ AppDataSource.initialize().then(() => {
     );
 
     // setup all email templates
-    // AmazonSimpleEmailService.createOrUpdateTemplates();
+    AmazonSimpleEmailService.createOrUpdateTemplates();
 
 })
 
