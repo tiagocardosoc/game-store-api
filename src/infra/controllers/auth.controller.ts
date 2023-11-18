@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import UserService from "../services/auth.service";
 import { BaseController } from "./base.controller";
 import InputSignUpDTO from "../../core/dtos/auth/input/sign-up.dto";
+import authMailService from "../services/auth-mail.service";
 
 class AuthController extends BaseController {
     async signUp(req: Request, res: Response): Promise<void> {
@@ -9,7 +10,6 @@ class AuthController extends BaseController {
             const userDataInput: InputSignUpDTO = req.body;
 
             const inputData = new InputSignUpDTO(userDataInput)
-
             const validation = await inputData.validateDTO(inputData)
 
             if (validation.length) {
@@ -24,7 +24,7 @@ class AuthController extends BaseController {
 
             this.ok(res)
         } catch (error) {
-            this.generalError(res, 'It was not possible register you, try again later.')
+            this.generalError(res, error.message)
         }
     }
 }
