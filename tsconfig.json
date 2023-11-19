@@ -17,6 +17,12 @@
       "resolveJsonModule": true,
       "baseUrl": ".",
       "typeRoots": ["node_modules/@types"],
+      "paths": {
+        "@/*": ["src/*"],
+        "@core/*": ["src/core/*"],
+        "@models/*": ["src/core/models/*"],
+        "@infra/*": ["src/infra/*"],
+      }
     },
   }
   
