@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import UserService from "../services/auth.service";
 import { BaseController } from "./base.controller";
 import InputSignUpDTO from "../../core/dtos/auth/input/sign-up.dto";
-import authMailService from "../services/auth-mail.service";
 
 class AuthController extends BaseController {
     async signUp(req: Request, res: Response): Promise<void> {
