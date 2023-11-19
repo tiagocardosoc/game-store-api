@@ -6,7 +6,11 @@ import { config } from "dotenv";
 import AmazonSimpleEmailService from "./infra/services/aws-mail.service";
 
 AppDataSource.initialize().then(() => {
-    AppDataSource.runMigrations()
+    AppDataSource.runMigrations().then(() => {
+        console.log('Migrations runned...')
+    }).catch((e) => {
+        console.log('Error at run migrations...', e)
+    })
     const app = express()
 
     config();
@@ -30,7 +34,7 @@ AppDataSource.initialize().then(() => {
     );
 
     // setup all email templates
-    // AmazonSimpleEmailService.createOrUpdateTemplates();
+    AmazonSimpleEmailService.createOrUpdateTemplates();
 
 })
 

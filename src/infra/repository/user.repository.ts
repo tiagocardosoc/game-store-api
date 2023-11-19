@@ -1,6 +1,7 @@
-import { ICreateUserRepository, IFindOneWhereRepository, IUpdateUserRepository, IUpdateWhereRepository } from "src/core/interfaces/user.interfaces";
-import { UserModel } from "../../core/models/user.model";
-import { AppDataSource } from "../../data-source";
+
+import { ICreateUserRepository, IFindOneWhereRepository, IUpdateUserRepository, IUpdateWhereRepository } from "@/core/interfaces/user.interfaces";
+import { AppDataSource } from "@/data-source";
+import { UserModel } from "@core/models/user.model";
 import { Repository } from "typeorm";
 
 export class UserRepository {

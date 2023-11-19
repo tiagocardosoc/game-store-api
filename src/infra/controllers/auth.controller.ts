@@ -9,7 +9,6 @@ class AuthController extends BaseController {
             const userDataInput: InputSignUpDTO = req.body;
 
             const inputData = new InputSignUpDTO(userDataInput)
-
             const validation = await inputData.validateDTO(inputData)
 
             if (validation.length) {
@@ -24,7 +23,7 @@ class AuthController extends BaseController {
 
             this.ok(res)
         } catch (error) {
-            this.generalError(res, 'It was not possible register you, try again later.')
+            this.generalError(res, error.message)
         }
     }
 }

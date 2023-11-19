@@ -1,4 +1,4 @@
-import { mailTemplates } from "src/core/mail";
+import { mailTemplates } from "../../core/mail";
 import { aws } from "../../config/aws.config";
 import AWS from 'aws-sdk';
 import { ISendMailPayload } from "src/core/interfaces/mail.interfaces";

@@ -1,9 +1,9 @@
 import { ISendMailAccountConfirmation } from "src/core/interfaces/mail.interfaces";
 import AmazonSimpleEmailService from "./aws-mail.service";
 
-export class MailService {
+class MailService {
 
-    async AccountActivation(payload: ISendMailAccountConfirmation): Promise<string> {
+    async accountActivation(payload: ISendMailAccountConfirmation): Promise<string> {
         try {
             const response: AWS.SES.SendTemplatedEmailResponse = await AmazonSimpleEmailService.sendEmail(
                 {
@@ -18,3 +18,5 @@ export class MailService {
         }
     }
 }
+
+export default new MailService()

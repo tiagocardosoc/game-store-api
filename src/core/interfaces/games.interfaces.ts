@@ -1,22 +1,19 @@
-import { FindManyOptions, FindOneOptions, FindOptionsWhere } from "typeorm";
+import { DeleteResult, FindManyOptions, FindOneOptions, FindOptionsWhere, UpdateResult } from "typeorm";
 import { GamesModel } from "../models/games.model";
 
+/*NOTE - The reason why we are creating customs interfaces to represent the type of inputs or outputs is because it's more simple to change if necessary in the future. So we can just handle all types in a unique file.*/
 
-// REPOSITORY:
-
-// > CREATE <
+// INPUTS:
 export interface ICreateGamesRepository extends Partial<GamesModel> { }
-
-// > UPDATE <
 export interface IUpdateGamesRepository extends Partial<GamesModel> { }
-
 export interface IUpdateWhereGamesRepository extends FindOptionsWhere<GamesModel> { }
-
-// > FIND ONE <
 export interface IFindOneWhereGamesRepository extends FindOneOptions<GamesModel> { }
-
-// > FIND ALL <
 export interface IFindAllWhereGamesRepository extends FindManyOptions<GamesModel> { }
-
-// > REMOVE <
 export interface IRemoveWhereGamesRepository extends FindOptionsWhere<GamesModel> { }
+
+// OUTPUTS: 
+export interface IResponseCreateGamesRepository extends GamesModel { }
+export interface IResponseUpdateGamesRepository extends UpdateResult { }
+export interface IResponseFindOneGamesRepository extends GamesModel { }
+export interface IResponseFindAllGamesRepository extends GamesModel { }
+export interface IResponseDeleteGamesRepository extends DeleteResult { }
