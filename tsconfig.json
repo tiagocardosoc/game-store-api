@@ -22,6 +22,9 @@
         "@core/*": ["src/core/*"],
         "@models/*": ["src/core/models/*"],
         "@infra/*": ["src/infra/*"],
+        "@services/*": ["src/infra/services/*"],
+        "@controllers/*": ["src/infra/controllers/*"],
+        "@repository/*": ["src/infra/repository/*"]
       }
     },
   }
