@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn start",
-    "start:dev": "nodemon --exec ts-node src/server.ts",
+    "start:dev": "nodemon --exec ts-node -r tsconfig-paths/register src/server.ts",
     "build": "npx tsc",
     "typeorm": "typeorm-ts-node-commonjs"
   },
@@ -28,6 +28,7 @@
     "nodemon": "^3.0.1",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
     "typeorm": "^0.3.17",
     "typescript": "^5.2.2"
   }
