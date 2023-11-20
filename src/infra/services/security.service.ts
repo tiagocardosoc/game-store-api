@@ -1,6 +1,6 @@
 import * as crypto from 'crypto';
 
-class Cryptography {
+class SecurityService {
     static async hashPassword(password: string): Promise<string> {
         const salt = crypto.randomBytes(16).toString('hex');
         const hash = crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha256').toString('hex');
@@ -24,4 +24,4 @@ class Cryptography {
     }
 }
 
-export default Cryptography;
+export default SecurityService;

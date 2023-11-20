@@ -1,6 +1,6 @@
 import { UserModel } from "src/core/models/user.model";
 import { UserRepository } from "../repository/user.repository";
-import Cryptography from "./security.service";
+import SecurityService from "./security.service";
 import { ISignUpData } from "src/core/interfaces/user.interfaces";
 import authMailService from "./auth-mail.service";
 
@@ -18,13 +18,13 @@ class UserService {
             throw new Error('User already exists')
         }
 
-        const hashedPassword = await Cryptography.hashPassword(data.password);
+        const hashedPassword = await SecurityService.hashPassword(data.password);
         const [salt, hash] = hashedPassword.split('.');
         data.password = hash
 
         const userCreated = await this.userRepository.create(data);
 
-        const accountActivationToken = Cryptography.generateToken()
+        const accountActivationToken = SecurityService.generateToken()
 
         authMailService.accountActivation({
             to: userCreated.email,
