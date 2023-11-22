@@ -1,4 +1,5 @@
 import * as crypto from 'crypto';
+import { sign } from 'jsonwebtoken';
 
 class SecurityService {
     static async hashPassword(password: string): Promise<string> {
@@ -21,6 +22,11 @@ class SecurityService {
         const hash = crypto.createHash('sha256').update(valorAleatorio).digest('hex');
 
         return hash;
+    }
+
+    static createToken(userId: string, email: string): string {
+        const token = sign({ userId, email }, 'secret', { expiresIn: '1h' });
+        return token
     }
 }
 
