@@ -21,3 +21,9 @@ export interface ISignUpData {
     email: string,
     password: string
 }
+
+export interface ISignInData {
+    id: string,
+    email: string,
+    password: string
+}
