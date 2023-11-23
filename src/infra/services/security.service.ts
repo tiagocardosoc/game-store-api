@@ -1,3 +1,4 @@
+import { secret } from '@/config/app.config';
 import * as crypto from 'crypto';
 import { sign } from 'jsonwebtoken';
 
@@ -25,7 +26,7 @@ class SecurityService {
     }
 
     static createToken(userId: string, email: string): string {
-        const token = sign({ userId, email }, 'secret', { expiresIn: '1h' });
+        const token = sign({ userId, email }, secret, { expiresIn: '1h' });
         return token
     }
 }
