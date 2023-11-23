@@ -1,7 +1,6 @@
-import { UserModel } from "src/core/models/user.model";
 import { UserRepository } from "../repository/user.repository";
 import SecurityService from "./security.service";
-import { ISignUpData } from "src/core/interfaces/user.interfaces";
+import { ISignInData, ISignUpData } from "src/core/interfaces/user.interfaces";
 import authMailService from "./auth-mail.service";
 
 class UserService {
@@ -19,8 +18,7 @@ class UserService {
         }
 
         const hashedPassword = await SecurityService.hashPassword(data.password);
-        const [salt, hash] = hashedPassword.split('.');
-        data.password = hash
+        data.password = hashedPassword
 
         const userCreated = await this.userRepository.create(data);
 
@@ -36,6 +34,24 @@ class UserService {
         })
 
         return
+    }
+
+    async signIn(data: ISignInData): Promise<string>{
+        const userData = await this.userRepository.findOne({ email: data.email })
+
+        if(!userData) {
+            throw new Error('User does not exists');
+        }
+
+        const passwordMatch = await SecurityService.verifyPassword(data.password, userData.password);
+
+        if(!passwordMatch) {
+            throw new Error('Wrong credentials');
+        }
+
+        const token = SecurityService.createToken(userData.id, userData.email);
+        
+        return token;
     }
 }
 

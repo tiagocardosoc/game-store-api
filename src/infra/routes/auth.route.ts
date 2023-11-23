@@ -8,4 +8,9 @@ route.post(
     AuthController.signUp.bind(AuthController)
 )
 
+route.post(
+    '/auth/sign-in',
+    AuthController.signIn.bind(AuthController)
+)
+
 export default route;
