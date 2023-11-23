@@ -49,7 +49,7 @@ class UserService {
             throw new Error('Wrong credentials');
         }
 
-        const token = SecurityService.createToken(data.id, data.email);
+        const token = SecurityService.createToken(userData.id, userData.email);
         
         return token;
     }
