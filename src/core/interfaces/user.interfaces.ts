@@ -23,7 +23,6 @@ export interface ISignUpData {
 }
 
 export interface ISignInData {
-    id: string,
     email: string,
     password: string
 }
