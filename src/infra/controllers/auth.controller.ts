@@ -42,9 +42,9 @@ class AuthController extends BaseController {
                 return
             }
 
-            await UserService.signIn(inputData)
+            const validationToken = await UserService.signIn(inputData);
 
-            this.ok(res);
+            this.ok(res, { message: validationToken });
         } catch (error) {
             this.generalError(res, error.message);
         }
